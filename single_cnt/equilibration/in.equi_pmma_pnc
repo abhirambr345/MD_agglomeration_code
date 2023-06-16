@@ -1,0 +1,40 @@
+#lammps code to run fracture simulations on PNC with single cnt
+#functionalized 10 % with -OH group
+
+# Initialization
+
+units		real
+atom_style 	charge
+boundary 	p p p
+read_data       six_cnt_f.data								
+
+# ReaxFF potential 
+
+pair_style	reax/c control_file lgvdw yes 
+pair_coeff	* * ffield.reax.lg C C H O H C C C O O C C				
+
+neighbor	4 bin
+neigh_modify	every 10 delay 0 check no
+
+thermo 100
+thermo_style custom step atoms temp press pe ke etotal vol density lx ly lz      
+
+# Conjugate gradient minimization
+
+fix std all qeq/reax 1 0.0 10.0 1e-6 reax/c
+min_style	 cg							
+minimize	 1.0e-6 1.0e-8 10000 100000
+
+
+#set of equilibrations to reduce the energy of the system
+
+reset_timestep 0
+timestep 0.5
+#fix nvt_equi all nvt temp 300.0 300.0 25.0
+fix npt_equi all npt temp 300.0 300.0 25.0 iso 1.0 1.0 250.0
+dump npt_dump all custom 500 dump.npt id type x y z
+run 100000
+write_restart	restart.npt_equi						# load this file in the tension simulation code
+unfix npt_equi
+undump npt_dump
+
