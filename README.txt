@@ -1,5 +1,5 @@
 #########################################
-####       Abhiram B R		     ####	
+####       Abhiram B R		           ####	
 #### Department of Civil Engineering ####
 ####  Indian Institute of Science    #### 
 ####     abhirambr@iisc.ac.in 	     ####	
@@ -7,8 +7,8 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-This folder contains molecular dynamics (MD) codes to simulate the influence of agglomeration of functionalized carbon nanotube (CNT) on the fracture properties of
-polymer nanocomposite (PNC).
+This folder contains molecular dynamics (MD) codes to simulate the influence of agglomeration of functionalized carbon nanotube (CNT) on the 
+fracture properties of polymer nanocomposite (PNC).
 Modeling is performed in Materials Studio 6.0
 The model is then imported to LAMMPS using msi2lmp tool
 All MD simulations are performed in LAMMPS and the post-processing is performed using OVITO and MATLAB
@@ -19,7 +19,6 @@ The directory includes the following folders and files
 
 Folder names:
 single_cnt	- consists of MD code and dependent files for simulating fracture properties of PNC with single CNT reinforcement
-six_cnt		- consists of MD code and dependent files for simulating fracture properties of PNC with six CNTs - the most agglomerated case in our study
 equilibration   - MD code for running sequence of equilibration
 tension		- MD code for running uniaxial tension boundary condition
 
