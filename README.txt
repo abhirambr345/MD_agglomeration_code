@@ -5,6 +5,10 @@
 ####     abhirambr@iisc.ac.in 	     ####	
 #########################################
 
+If you use this code in any future publications, please cite the following publication:
+
+Abhiram B R and Debraj Ghosh, Atomic investigation on optimal interfacial bonding for enhanced fracture properties in polymer nanocomposites, Engineering Fracture Mechanics (2023): 109078
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This folder contains molecular dynamics (MD) codes to simulate the influence of agglomeration of functionalized carbon nanotube (CNT) on the 
@@ -34,3 +38,5 @@ For any queries write to abhirambr@iisc.ac.in
 References
 
 1. Abhiram B R and Debraj Ghosh, Atomic investigation on optimal interfacial bonding for enhanced fracture properties in polymer nanocomposites, Engineering Fracture Mechanics (2023): 109078
+
+
