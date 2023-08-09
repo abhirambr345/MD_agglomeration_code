@@ -1,0 +1,18 @@
+simulation_name		pmma ! output file will have this name
+
+tabulate_long_range	10000 !long ranged interaction
+energy_update_freq	1 
+
+nbrhood_cutoff		5.0
+hbond_cutoff		7.5
+bond_graph_cutoff	0.3
+thb_cutoff		0.001
+
+write_freq		100
+traj_title		polymer
+atom_info		0    ! 0: no atom info, 1: print basic atom info in the trajectory file
+atom_forces		0    ! 0: basic atom format, 1: print force on each atom in the trajectory file
+atom_velocities		0    ! 0: basic atom format, 1: print the velocity of each atom in the trajectory file
+bond_info		1    ! 0: do not print bonds, 1: print bonds in the trajectory file
+angle_info		0    ! 0: do not print angles, 1: print angles in the trajectory file 
+

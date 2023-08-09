@@ -1,0 +1,66 @@
+# three cnt with 10% -OH functionalization
+# lammps code to simulate tension test on RVE of nanocomposite with crack
+# crack needs to be initiated first
+# system is already equilibrated
+# delete some atoms from a region to intiate a crack
+# no cnt fix in MS equilibration
+# load equilibrated structure
+
+read_restart    restart.npt_equi
+
+# ReaxFF potential to define interatomic interactions
+
+pair_style	reax/c control_file lgvdw yes 
+pair_coeff	* * ffield.reax.lg C C H O H C C C O O C C				
+
+neighbor	4 bin
+neigh_modify	every 10 delay 0 check no
+
+thermo 100
+thermo_style custom step atoms temp press pe ke etotal vol density lx ly lz      #output variables
+
+compute pnc_temp all temp
+compute pnc_pe all pe/atom
+compute pnc_stress all stress/atom pnc_temp pair bond
+compute pnc_str all reduce sum c_pnc_stress[3]
+
+variable tmpz equal "lz"
+variable L0z equal ${tmpz}
+variable tmpx equal "lx"
+variable L0x equal ${tmpx}
+variable tmpy equal "ly"
+variable L0y equal ${tmpy}
+
+# define groups of atoms to delete 
+
+fix std all qeq/reax 1 0.0 10.0 1e-6 reax/c
+
+region atoms_for_deletion block EDGE 20.0 EDGE EDGE 66.231865 68.731865              # NOTE: box size will change after equilibration
+delete_atoms region atoms_for_deletion
+reset_ids 
+
+reset_timestep 0
+timestep 0.25
+thermo_style custom step atoms temp press pe ke etotal vol density lx ly lz
+fix 1 all npt temp 300.0 300.0 25.0 x 0.0 0.0 250.0 y 0.0 0.0 250.0 couple xy 
+fix 2 all deform 1 z erate 0.00001 units box
+fix bd all reax/c/bonds 1000 bonds.reaxc
+dump deform1 all custom 1000 dump.deform id type x y z
+
+variable strainz equal "(lz-v_L0z)/v_L0z"
+variable strainx equal "(lx-v_L0x)/v_L0x"
+variable strainy equal "(ly-v_L0y)/v_L0y"
+variable stressz equal "-pzz/10000"
+variable p1 equal "v_stressz"
+variable p2 equal "v_strainz"
+variable p3 equal "v_strainx"
+variable p4 equal "v_strainy"
+fix 3 all print 100 "${p1} ${p2} ${p3} ${p4}" file pmma_pnc_crack.txt screen no
+
+run 400000
+write_restart restart.after_deform
+unfix 1
+unfix 2
+unfix 3
+unfix std
+unfix bd
