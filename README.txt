@@ -7,7 +7,8 @@
 
 If you use this code in any future publications, please cite the following publication:
 
-Abhiram B R and Debraj Ghosh, Atomic investigation on optimal interfacial bonding for enhanced fracture properties in polymer nanocomposites, Engineering Fracture Mechanics (2023): 109078
+1. Abhiram B R and Debraj Ghosh, Atomic investigation on optimal interfacial bonding for enhanced fracture properties in polymer nanocomposites, Engineering Fracture Mechanics (2023): 109078
+2. Abhiram B R and Debraj Ghosh, Influence of nanofiller agglomeration on fracture properties of polymer nanocomposite: Insights from atomistic simulation, Engineering Fracture Mechanics (2023): 109503
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,6 +24,8 @@ The directory includes the following folders and files
 
 Folder names:
 single_cnt	- consists of MD code and dependent files for simulating fracture properties of PNC with single CNT reinforcement
+two_cnt, three_cnt, four_cnt and six_cnt.
+Subdirectoy names:
 equilibration   - MD code for running sequence of equilibration
 tension		- MD code for running uniaxial tension boundary condition
 
@@ -38,5 +41,6 @@ For any queries write to abhirambr@iisc.ac.in
 References
 
 1. Abhiram B R and Debraj Ghosh, Atomic investigation on optimal interfacial bonding for enhanced fracture properties in polymer nanocomposites, Engineering Fracture Mechanics (2023): 109078
+2. Abhiram B R and Debraj Ghosh, Influence of nanofiller agglomeration on fracture properties of polymer nanocomposite: Insights from atomistic simulation, Engineering Fracture Mechanics (2023): 109503
 
 
